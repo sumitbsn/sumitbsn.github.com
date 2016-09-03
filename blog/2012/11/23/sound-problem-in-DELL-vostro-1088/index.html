@@ -1,0 +1,315 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>sound problem in DELL vostro 1088 - BUG FACTORY</title>
+  <meta name="author" content="Amit Kumar Singh">
+
+  
+  <meta name="description" content="I own a DELL-vostro-1088 Laptop.i have switched over linux in year 2009,every thing was ok with the installation of drivers except for one.Laptop&# &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://amitks.github.com/blog/2012/11/23/sound-problem-in-DELL-vostro-1088/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="BUG FACTORY" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:amitks.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+    <li><a href="/">
+        <span class="blue_light">
+            BUG FACTORY
+        </span>
+       
+           <span class="blue_dark">
+             A Programming and Linux Tweaking Blog
+           </span>
+       
+    </a></li>
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/data/about">About Me</a></li>
+ 
+</ul> 
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Sound Problem in DELL Vostro 1088</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-23T15:32:00+05:30" pubdate data-updated="true">Nov 23<span>rd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I own a DELL-vostro-1088 Laptop.i have switched over linux in year 2009,every thing was ok with the installation of drivers except for one.Laptop&#8217;s audio jack was not working so no fun with any headfones or external Sound-Box.That time current version of alsa was 1.0.21 or 1.0.22  something like that.i tried upgrading with alsa 1.0.25 still no luck at all with sound output.
+Googled a lot then i got some where close.i created a alsa.conf file inside <code>/etc/modprobe.d/</code> directory.then i did this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">echo</span> <span class="s2">&quot;options snd-hda-intel model=dell-vostro position_fix=0 enable=yes&quot;</span> &gt; /etc/modprobe.d/alsa.conf
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>it took some time because i was trying with <code>model=dell-vostro-1088</code> while above line was sufficient.anyway i rebooted the machine and was really surprised to see that my audio jack was working.Now i am enjoying my Creative Sound-Box.
+Right now Fedora, ubuntu and some other distro has upgraded the version of alsa so no problem with audio drivers.
+but Redhat-6/Centos-6 are still using alsa-1.0.21 so, i need to do above modifications in order to stay pain free.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Amit Kumar Singh</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-23T15:32:00+05:30" pubdate data-updated="true">Nov 23<span>rd</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://amitks.github.com/blog/2012/11/23/sound-problem-in-DELL-vostro-1088/" data-via="msnamit" data-counturl="http://amitks.github.com/blog/2012/11/23/sound-problem-in-DELL-vostro-1088/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/11/22/starting-blogging-with-octopress/" title="Previous Post: Started Blogging with Octopress">&laquo; Started Blogging with Octopress</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/12/03/editors-compatibility-with-octopress/" title="Next Post: Editors Compatibility With Octopress">Editors Compatibility With Octopress &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/04/06/ati-radeon-4330-configuration-ubuntu-12-dot-10/">ATI Radeon 4330 configuration Ubuntu 12.10</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/22/configuring-firefox-plugin-for-java-jre-in-redhat-slash-centos-6/">Configuring java jre plugin for Firefox in Redhat/Centos 6</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/08/installing-qemu-and-running-xv6/">installing qemu and running xv6 on Centos/Redhat 6</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/04/facebook-user-details-app/">A Demo facebook app for extracting user details</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/04/cs-1-dot-6-memory-refresh/">CS 1.6 Memory Refresh</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/amitks">@amitks</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'amitks',
+            count: 0,
+            skip_forks: false,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("msnamit", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/msnamit" class="twitter-follow-button" data-show-count="false">Follow @msnamit</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Amit Kumar Singh -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'amit';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://amitks.github.com/blog/2012/11/23/sound-problem-in-DELL-vostro-1088/';
+        var disqus_url = 'http://amitks.github.com/blog/2012/11/23/sound-problem-in-DELL-vostro-1088/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

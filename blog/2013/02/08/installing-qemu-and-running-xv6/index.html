@@ -1,0 +1,361 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>installing qemu and running xv6 on Centos/Redhat 6 - SUM(+)ITHUB</title>
+  <meta name="author" content="Sumit Kumar Singh">
+
+  
+  <meta name="description" content="QEMU Emulator QEMU is a generic and open source machine emulator and virtualizer. When used as a machine emulator, QEMU can run OSes and programs &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://sumitks.github.com/blog/2013/02/08/installing-qemu-and-running-xv6/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="SUM(+)ITHUB" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:sumitks.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+    <li><a href="/">
+        <span class="blue_light">
+            SUM(+)ITHUB
+        </span>
+       
+           <span class="blue_dark">
+             A Programming and Linux Tweaking Blog
+           </span>
+       
+    </a></li>
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/data/about">About Me</a></li>
+ 
+</ul> 
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Installing Qemu and Running Xv6 on Centos/Redhat 6</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-08T23:14:00+05:30" pubdate data-updated="true">Feb 8<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>QEMU Emulator</h2>
+
+<p>QEMU is a generic and open source machine emulator and virtualizer.</p>
+
+<p>When used as a machine emulator, QEMU can run OSes and programs made for one machine (e.g. an ARM board) on a different machine (e.g. your own PC). By using dynamic translation, it achieves very good performance.</p>
+
+<p>When used as a virtualizer, QEMU achieves near native performances by executing the guest code directly on the host CPU. QEMU supports virtualization when executing under the Xen hypervisor or using the KVM kernel module in Linux. When using KVM, QEMU can virtualize x86, server and embedded PowerPC, and S390 guests.</p>
+
+<h2>xv6</h2>
+
+<p>xv6 is a re-implementation of Dennis Ritchie&#8217;s and Ken Thompson&#8217;s Unix
+Version 6 (v6).  xv6 loosely follows the structure and style of v6,
+but is implemented for a modern x86-based multiprocessor using ANSI C.</p>
+
+<h2>Installing QEMU</h2>
+
+<p>get the current version of QEMU at <a href="http://wiki.qemu.org/Download">http://wiki.qemu.org/Download</a> or clone the git repository <code>git clone git://git.qemu-project.org/qemu.git</code>.if downloaded the tarball archieve then untar it.either way you have qemu on your system.Now before further proceeding we should check the requirements for installing QEMU.make sure these packages are installed if not you can&#8217;t proceed for the installation.</p>
+
+<ul>
+<li>SDL (This comes with installation DVD if not u may google it)</li>
+<li>SDL-devel (This too comes with installation DVD)</li>
+<li><a href="http://hammurabi.acc.umu.se/pub/gnome/sources/glib/2.12/glib-2.12.12.tar.bz2">glib</a></li>
+<li><a href="http://pkgconfig.freedesktop.org/releases/pkg-config-0.22.tar.gz">pkg-config</a></li>
+</ul>
+
+
+<figure class='code'><figcaption><span>installation steps for QEMU</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">cd </span>qemu
+</span><span class='line'>./configure
+</span><span class='line'>make
+</span><span class='line'>make install
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Running xv6</h2>
+
+<p>Fetch xv6 source.The latest xv6 source is available via <code>git clone git://pdos.csail.mit.edu/xv6/xv6.git</code>.</p>
+
+<figure class='code'><figcaption><span>check the path for qemu executables</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>which qemu-system-i386
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Change the line containing <code>#QEMU</code> in xv6/Makefile to: <code>QEMU=/usr/local/bin/qemu-system-i386</code> (or ensure that qemu is in your path).
+Go to the xv6 directory. Run following command to run xv6 inside Qemu.</p>
+
+<figure class='code'><figcaption><span>Running xv6</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">cd </span>xv6
+</span><span class='line'>make qemu
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That&#8217;s it now enjoy xv6 inside QEMU emulator and learn the core of unix operating system.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">sumit Kumar Singh</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-08T23:14:00+05:30" pubdate data-updated="true">Feb 8<span>th</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://sumitks.github.com/blog/2013/02/08/installing-qemu-and-running-xv6/" data-via="msnsumit" data-counturl="http://sumitks.github.com/blog/2013/02/08/installing-qemu-and-running-xv6/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/02/04/facebook-user-details-app/" title="Previous Post: A Demo facebook app for extracting user details">&laquo; A Demo facebook app for extracting user details</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/02/22/configuring-firefox-plugin-for-java-jre-in-redhat-slash-centos-6/" title="Next Post: Configuring java jre plugin for Firefox in Redhat/Centos 6">Configuring java jre plugin for Firefox in Redhat/Centos 6 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/04/06/ati-radeon-4330-configuration-ubuntu-12-dot-10/">ATI Radeon 4330 configuration Ubuntu 12.10</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/22/configuring-firefox-plugin-for-java-jre-in-redhat-slash-centos-6/">Configuring java jre plugin for Firefox in Redhat/Centos 6</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/08/installing-qemu-and-running-xv6/">installing qemu and running xv6 on Centos/Redhat 6</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/04/facebook-user-details-app/">A Demo facebook app for extracting user details</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/04/cs-1-dot-6-memory-refresh/">CS 1.6 Memory Refresh</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/sumitks">@sumitks</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'sumitks',
+            count: 0,
+            skip_forks: false,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("msnsumit", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/msnsumit" class="twitter-follow-button" data-show-count="false">Follow @msnsumit</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - sumit Kumar Singh -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'sumit';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://sumitks.github.com/blog/2013/02/08/installing-qemu-and-running-xv6/';
+        var disqus_url = 'http://sumitks.github.com/blog/2013/02/08/installing-qemu-and-running-xv6/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
