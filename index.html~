@@ -38,7 +38,6 @@
     background-color: dark_blue;
 }*/
 body {
-	color: yellow;
     background-image: url("test6.jpg");
 } 
  
