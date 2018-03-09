@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Configuring java jre plugin for Firefox in Redhat/Centos 6 - SUM(+)ITHUB</title>
+  <title> - SUM(+)ITHUB</title>
   <meta name="author" content="Sumit Kumar Singh">
 
   
-  <meta name="description" content="Download the latest Linux RPM (self-extracting file), currently jre-7u15-linux-i586.rpm, from java.com then as root install and configure the &hellip;">
+  <meta name="description" content="Latest proprietary AMD Catalyst driver version 12.9 cannot be used with Ubuntu 12.10 If you have a AMD Radeon HD 2xxx-4xxx series card. Drivers for &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://sumitbsn.github.com/blog/2016/03/06/configuring-firefox-plugin-for-java-jre-in-redhat-slash-centos-6/">
+  <link rel="canonical" href="http://sumitbsn.github.com/blog/2016/03/06/katoolin/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -71,7 +71,7 @@
   
   <header>
     
-      <h1 class="entry-title">Configuring Java Jre Plugin for Firefox in Redhat/Centos 6</h1>
+      <h1 class="entry-title">Install All Kali Linux Tools On Ubuntu Using “Katoolin” Script.</h1>
     
     
       <p class="meta">
@@ -87,85 +87,26 @@
   
 
 
-<time datetime="2016-03-06T15:05:00+05:30" pubdate data-updated="true">Mar 6<span>th</span>, 2016</time>
+<time datetime="2016-03-06T20:41:00+05:30" pubdate data-updated="true">Mar 6<span>th</span>, 2016</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>Download the latest Linux RPM (self-extracting file), currently jre-7u15-linux-i586.rpm, from <a href="java.com">java.com</a> then as root install and configure the alternatives system and plugins:</p>
+<div class="entry-content"><p>Many Ubuntu Linux users are willing to use the tools of Kali Linux but they don’t want to install another Linux distro for this purpose. To solve this issue, you can use Katoolin script and install all Kali Linux tools on Ubuntu and other Debian derivatives.</p>
+
+<p>To install these packages, run the following commands:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>rpm -Uvh jre-7u15-linux-i586.rpm
-</span><span class='line'>alternatives --config java
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>There are 2 programs which provide &#8216;java&#8217;.</p>
-
-<figure class='code'><figcaption><span>&#8220;alternatives &#8211;config java&#8221; output</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>  Selection    Command
-</span><span class='line'>
-</span><span class='line'>*+ 1           /usr/lib/jvm/jre-1.6.0-openjdk/bin/java
-</span><span class='line'>   2           /usr/lib/jvm/jre-1.5.0-gcj/bin/java
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git clone https://github.com/LionSec/katoolin.git  && cp katoolin/katoolin.py /usr/bin/katoolin
+</span><span class='line'>chmod +x  /usr/bin/katoolin
+</span><span class='line'>katoolin
 </span></code></pre></td></tr></table></div></figure>
 
-
-<p> <br/>
-Enter to keep the current selection[+], or type selection number:</p>
-
-<p>Note use number of versions, N, For example, if 2 versions were installed then:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>alternatives --install /usr/bin/java java /usr/java/latest/bin/java 3
-</span><span class='line'>alternatives --config java
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>There are 3 programs which provide &#8216;java&#8217;.</p>
-
-<figure class='code'><figcaption><span>&#8220;alternatives &#8211;config java&#8221; output</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>  Selection    Command
-</span><span class='line'>
-</span><span class='line'>*+ 1           /usr/lib/jvm/jre-1.6.0-openjdk/bin/java
-</span><span class='line'>   2           /usr/lib/jvm/jre-1.5.0-gcj/bin/java
-</span><span class='line'>   3           /usr/java/latest/bin/java
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Enter to keep the current selection[+], or type selection number: 3</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>java -version
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>java version &#8220;1.7.0_15&#8221;
-Java(TM) SE Runtime Environment (build 1.7.0_15-b03)
-Java HotSpot(TM) Server VM (build 23.7-b01, mixed mode)</p>
-
-<p>Create links in the Mozilla Plugins directory so Java jre will show in firefox plugin option.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">cd</span> /usr/lib/mozilla/plugins/
-</span><span class='line'>ln -fs /usr/java/latest/lib/i386/libnpjp2.so
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Now Restart your browser and then click on Enable button to enable this plugin.Thats it you are all set.</p>
 </div>
-
 
   <footer>
     <p class="meta">
@@ -186,7 +127,7 @@ Java HotSpot(TM) Server VM (build 23.7-b01, mixed mode)</p>
   
 
 
-<time datetime="2016-03-06T15:05:00+05:30" pubdate data-updated="true">Mar 6<span>th</span>, 2016</time>
+<time datetime="2016-03-06T20:41:00+05:30" pubdate data-updated="true">Mar 6<span>th</span>, 2016</time>
       
 
 
@@ -194,7 +135,7 @@ Java HotSpot(TM) Server VM (build 23.7-b01, mixed mode)</p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://sumitbsn.github.com/blog/2016/03/06/configuring-firefox-plugin-for-java-jre-in-redhat-slash-centos-6/" data-via="sumitbsn" data-counturl="http://sumitbsn.github.com/blog/2016/03/06/configuring-firefox-plugin-for-java-jre-in-redhat-slash-centos-6/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://sumitbsn.github.com/blog/2016/03/06/katoolin/" data-via="sumitbsn" data-counturl="http://sumitbsn.github.com/blog/2016/03/06/katoolin/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -207,10 +148,8 @@ Java HotSpot(TM) Server VM (build 23.7-b01, mixed mode)</p>
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2016/03/03/installing-qemu-and-running-xv6/" title="Previous Post: installing qemu and running xv6 on Centos/Redhat 6">&laquo; installing qemu and running xv6 on Centos/Redhat 6</a>
+        <a class="basic-alignment left" href="/blog/2016/03/06/ati-radeon-4330-configuration-ubuntu-12-dot-10/" title="ATI Radeon 4330 configuration Ubuntu 12.10">&laquo; ATI Radeon 4330 configuration Ubuntu 12.10</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2016/03/06/ati-radeon-4330-configuration-ubuntu-12-dot-10/" title="Next Post: ATI Radeon 4330 configuration Ubuntu 12.10">ATI Radeon 4330 configuration Ubuntu 12.10 &raquo;</a>
       
     </p>
   </footer>
@@ -310,7 +249,7 @@ Java HotSpot(TM) Server VM (build 23.7-b01, mixed mode)</p>
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2015 - sumit Kumar Singh -
+  Copyright &copy; 2016 - sumit Kumar Singh -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
@@ -322,8 +261,8 @@ Java HotSpot(TM) Server VM (build 23.7-b01, mixed mode)</p>
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://sumitbsn.github.com/blog/2016/03/06/configuring-firefox-plugin-for-java-jre-in-redhat-slash-centos-6/';
-        var disqus_url = 'http://sumitbsn.github.com/blog/2016/03/06/configuring-firefox-plugin-for-java-jre-in-redhat-slash-centos-6/';
+        var disqus_identifier = 'http://sumitbsn.github.com/blog/2016/03/06/katoolin';
+        var disqus_url = 'http://sumitbsn.github.com/blog/2016/03/06/katoolin/';
         var disqus_script = 'embed.js';
       
     (function () {
