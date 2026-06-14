@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>SIEM Platform — Security Event Simulation, Detection & AI-Powered Investigation Pipeline - SUM(+)ITHUB</title>
+  <meta name="author" content="Sumit Kumar Singh">
+
+  
+  <meta name="description" content="A modular SIEM-style security analytics platform built using Python, FastAPI, Redis Streams, OCSF normalization, Sigma rules, stateful correlation, and local AI models.">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://sumitbsn.github.com/blog/2026/06/14/siem-pipeline-security-event-simulation/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="SUM(+)ITHUB" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:sumitbsn.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+    <li><a href="/">
+        <span class="blue_light">
+            SUM(+)ITHUB
+        </span>
+       
+           <span class="blue_dark">
+             A Programming and Linux Tweaking Blog
+           </span>
+       
+    </a></li>
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/data/about">About Me</a></li>
+ 
+</ul> 
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">SIEM Platform — Security Event Simulation, Detection & AI-Powered Investigation Pipeline</h1>
+    
+    
+      <p class="meta">
+        
+<time datetime="2026-06-14T12:00:00+05:30" pubdate data-updated="true">Jun 14<span>th</span>, 2026</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content">
+
+<h2>Overview</h2>
+
+<p>A modular SIEM-style security analytics platform built using Python, FastAPI, Redis Streams, OCSF normalization, Sigma rules, stateful correlation, and local AI models. This project simulates how enterprise SIEM/XDR/MDR platforms ingest, normalize, correlate, detect, investigate, and enrich suspicious security activity from multiple telemetry sources.</p>
+
+<h2>Key Features</h2>
+
+<ul>
+<li>Security Event Simulator API with 100,000+ Generated Security Events</li>
+<li>Vendor-Style REST Endpoints with Rate-Limited API Polling</li>
+<li>Redis Streams Integration for scalable event streaming</li>
+<li>OCSF Normalization Layer for standardized event format</li>
+<li>Sigma Rule Detection Engine with community and custom rules</li>
+<li>Stateless and Stateful Correlation Detections</li>
+<li>Findings / Alert Generation and Incident Aggregation</li>
+<li>MITRE ATT&CK Mapping for threat intelligence</li>
+<li>Local LLM Integration (Ollama) with GPT-OSS Support</li>
+<li>AI-Powered Incident Analysis and Sigma Rule Generation</li>
+<li>Executive Security Reporting</li>
+<li>Modular Microservice Architecture</li>
+</ul>
+
+<h2>Architecture</h2>
+
+<pre><code>Event Generator (Simulates security events)
+    ↓
+FastAPI Simulator (Vendor-style REST APIs)
+    ↓
+Collector Service (Fetches events via polling)
+    ↓
+Raw Log Storage
+    ↓
+Redis Streams (Event queueing)
+    ↓
+OCSF Mapper (Normalization)
+    ↓
+Sigma Engine (Rule-based detection)
+    ↓
+Stateless Rules (High-risk activity detection)
+    ↓
+Stateful Rules (Correlation-based detection)
+    ↓
+Findings (Alert generation)
+    ↓
+Incident Builder (Aggregation &amp; enrichment)
+    ↓
+MITRE Mapper (ATT&amp;CK tactics mapping)
+    ↓
+AI Incident Analyzer (LLM-powered investigation)
+    ↓
+Executive Report (Business-ready insights)
+    ↓
+AI Sigma Generator (Generate new detection rules)
+</code></pre>
+
+<h2>Project Structure</h2>
+
+<pre><code>siem-platform/
+├── simulator/           # Event generation &amp; API
+├── collector/           # Log collection service
+├── queue/               # Redis Streams producer
+├── parser/              # OCSF normalization
+├── detections/          # Detection engines (Sigma, stateless, stateful)
+├── findings/            # Alert writer
+├── pipeline/            # Orchestration
+├── ai/                  # LLM integration (Ollama, incident analysis, sigma generation)
+├── alerts/              # Output files (findings, incidents, reports)
+└── docker-compose.yml   # Container orchestration
+</code></pre>
+
+<h2>Technologies Used</h2>
+
+<p>Python • FastAPI • Redis Streams • OCSF • REST APIs • YAML • Sigma Rules • Stateful Correlation • MITRE ATT&amp;CK • Ollama • GPT-OSS • Security Event Processing</p>
+
+<h2>Event Categories</h2>
+
+<p>The simulator exposes multiple vendor-style endpoints:</p>
+
+<table>
+<thead>
+<tr>
+<th>Endpoint</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/events</td>
+<td>All events</td>
+</tr>
+<tr>
+<td>/api/auth</td>
+<td>Authentication logs</td>
+</tr>
+<tr>
+<td>/api/firewall</td>
+<td>Firewall logs</td>
+</tr>
+<tr>
+<td>/api/edr</td>
+<td>EDR / Process logs</td>
+</tr>
+<tr>
+<td>/api/cloud</td>
+<td>Cloud / VPN logs</td>
+</tr>
+</tbody>
+</table>
+
+<h2>Quick Start</h2>
+
+<h3>Prerequisites</h3>
+
+<p><strong>Install Python</strong></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt update
+</span><span class='line'>sudo apt install python3 python3-pip python3-venv -y
+</span></code></pre></td></tr></table></div></figure>
+
+<p><strong>Install Redis</strong></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt install redis-server -y
+</span><span class='line'>sudo systemctl enable redis-server
+</span><span class='line'>sudo systemctl start redis-server
+</span></code></pre></td></tr></table></div></figure>
+
+<p><strong>Optional: Install Ollama for Local AI</strong></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>curl -fsSL https://ollama.com/install.sh | sh
+</span><span class='line'>ollama pull gpt-oss:20b
+</span></code></pre></td></tr></table></div></figure>
+
+<h3>Setup Instructions</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'># Clone repository
+</span><span class='line'>git clone https://github.com/sumitbsn/siem-platform.git
+</span><span class='line'>cd siem-platform
+</span><span class='line'># Create virtual environment
+</span><span class='line'>python3 -m venv venv
+</span><span class='line'>source venv/bin/activate
+</span></code></pre></td></tr></table></div></figure>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>pip install -r requirements.txt
+</span></code></pre></td></tr></table></div></figure>
+
+<h3>Running the Pipeline</h3>
+
+<p><strong>Step 1: Generate Events</strong></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>cd simulator
+</span><span class='line'>python generator.py
+</span></code></pre></td></tr></table></div></figure>
+
+<p><strong>Step 2: Start Simulator API</strong></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>uvicorn api:app --host 0.0.0.0 --port 8000
+</span></code></pre></td></tr></table></div></figure>
+
+<p><strong>Step 3: Full End-to-End Pipeline</strong></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>python -m pipeline.run_pipeline
+</span></code></pre></td></tr></table></div></figure>
+
+<p>This performs:</p>
+
+<ol>
+<li>OCSF Normalization</li>
+<li>Sigma Detection</li>
+<li>Stateless Detection</li>
+<li>Stateful Detection (correlation)</li>
+<li>Findings Generation</li>
+<li>Incident Building</li>
+<li>MITRE Mapping</li>
+<li>AI Incident Analysis</li>
+<li>Executive Report Generation</li>
+<li>AI Sigma Rule Generation</li>
+</ol>
+
+<h2>Detection Types</h2>
+
+<h3>Sigma Rules</h3>
+
+<p>Community-driven YAML-based detection rules:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'>title: Failed Login Detection
+</span><span class='line'>detection:
+</span><span class='line'>  keywords:
+</span><span class='line'>    - login_failed
+</span></code></pre></td></tr></table></div></figure>
+
+<h3>Stateless Detections</h3>
+
+<p>Rule-based alerts on individual events:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'>if event["risk_score"] &gt; 80:
+</span><span class='line'>    alert()
+</span></code></pre></td></tr></table></div></figure>
+
+<h3>Stateful Detections</h3>
+
+<p>Correlation-based alerts across event sequences:</p>
+
+<pre><code>5 failed logins from same IP within 5 minutes → Brute force alert
+Port scan pattern detection across events
+Lateral movement detection
+</code></pre>
+
+<h2>Output Files</h2>
+
+<p>All detections and reports are generated in the <code>alerts/</code> directory:</p>
+
+<ul>
+<li><code>findings.json</code> - Raw detection findings</li>
+<li><code>incidents.json</code> - Aggregated incidents</li>
+<li><code>enriched_incidents.json</code> - Incidents with MITRE ATT&amp;CK mapping</li>
+<li><code>executive_report.json</code> - Business-ready summary</li>
+<li><code>detections/generated/generated_sigma_rules.yml</code> - AI-generated rules</li>
+</ul>
+
+<h2>Learning Objectives</h2>
+
+<p>This project demonstrates:</p>
+
+<ul>
+<li>SIEM Architecture and Design</li>
+<li>Security Event Pipelines</li>
+<li>Detection Engineering</li>
+<li>Sigma Rule Development</li>
+<li>Stateful Correlation &amp; Stream Processing</li>
+<li>OCSF Normalization Standards</li>
+<li>MITRE ATT&amp;CK Framework Integration</li>
+<li>AI-Powered Security Analysis</li>
+<li>Local LLM Integration for threat investigation</li>
+<li>Redis-Based Event Streaming</li>
+<li>API-Based Telemetry Ingestion</li>
+</ul>
+
+<h2>Repository</h2>
+
+<p><a href="https://github.com/sumitbsn/siem-platform">siem-platform on GitHub</a></p>
+
+<p><strong>License:</strong> MIT</p>
+
+</div>
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">sumit Kumar Singh</span></span>
+
+      
+<time datetime="2026-06-14T12:00:00+05:30" pubdate data-updated="true">Jun 14<span>th</span>, 2026</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://sumitbsn.github.com/blog/2026/06/14/siem-pipeline-security-event-simulation/" data-via="sumitbsn" data-counturl="http://sumitbsn.github.com/blog/2026/06/14/siem-pipeline-security-event-simulation/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2017/01/25/katoolin/" title="Install All Kali Linux Tools On Ubuntu Using Katoolin Script">&laquo; Install All Kali Linux Tools On Ubuntu Using "Katoolin" Script.</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2026/06/14/siem-pipeline-security-event-simulation/">SIEM Platform — Security Event Simulation, Detection & AI-Powered Investigation Pipeline</a>
+      </li>
+  
+      <li class="post">
+        <a href="/blog/2017/01/25/katoolin/">Install All Kali Linux Tools On Ubuntu Using "Katoolin" Script.</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/03/06/ati-radeon-4330-configuration-ubuntu-12-dot-10/">ATI Radeon 4330 configuration Ubuntu 12.10</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/03/06/configuring-firefox-plugin-for-java-jre-in-redhat-slash-centos-6/">Configuring java jre plugin for Firefox in Redhat/Centos 6</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/03/02/facebook-user-details-app/">A Demo facebook app for extracting user details</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/sumitbsn">@sumitbsn</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos(githubConfig);
+    });
+  </script>
+  <script src="/javascripts/config.js" type="text/javascript"> </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("sumitbsn", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/sumitbsn" class="twitter-follow-button" data-show-count="false">Follow @sumitbsn</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+</div>
+
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2026 - Sumit Kumar Singh -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'Sumit';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+</body>
+</html>
