@@ -9,16 +9,27 @@ var github = (function(){
   }
   return {
     showRepos: function(options){
-      fetch("https://api.github.com/users/"+options.user+"/repos")
+      var url = "https://api.github.com/users/"+options.user+"/repos?per_page=100&sort=updated";
+      var headers = {};
+      
+      // Add GitHub token if available (for higher rate limits)
+      if (options.token) {
+        headers['Authorization'] = 'token ' + options.token;
+      }
+      
+      fetch(url, { headers: headers })
         .then(function(response) {
           if (!response.ok) {
-            throw new Error('Network response was not ok');
+            throw new Error('GitHub API error: ' + response.status);
           }
           return response.json();
         })
         .then(function(data) {
           var repos = [];
-          if (!data) { return; }
+          if (!Array.isArray(data)) { 
+            console.error('Unexpected API response:', data);
+            return; 
+          }
           for (var i = 0; i < data.length; i++) {
             if (options.skip_forks && data[i].fork) { continue; }
             repos.push(data[i]);
@@ -35,7 +46,7 @@ var github = (function(){
           render(options.target, repos);
         })
         .catch(function(error) {
-          console.error('Error:', error);
+          console.error('Error loading repos:', error);
           var target = $(options.target);
           if (target.find('li.loading').length) {
             target.find('li.loading').addClass('error').text("Error loading feed");
