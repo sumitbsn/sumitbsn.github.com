@@ -9,16 +9,19 @@ var github = (function(){
   }
   return {
     showRepos: function(options){
-      $.ajax({
-          url: "https://api.github.com/users/"+options.user+"/repos?callback=?"
-        , type: 'jsonp'
-        , error: function (err) { $(options.target + ' li.loading').addClass('error').text("Error loading feed"); }
-        , success: function(data) {
+      fetch("https://api.github.com/users/"+options.user+"/repos")
+        .then(function(response) {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(function(data) {
           var repos = [];
-          if (!data || !data.data) { return; }
-          for (var i = 0; i < data.data.length; i++) {
-            if (options.skip_forks && data.data[i].fork) { continue; }
-            repos.push(data.data[i]);
+          if (!data) { return; }
+          for (var i = 0; i < data.length; i++) {
+            if (options.skip_forks && data[i].fork) { continue; }
+            repos.push(data[i]);
           }
           repos.sort(function(a, b) {
             var aDate = new Date(a.pushed_at).valueOf(),
@@ -30,8 +33,16 @@ var github = (function(){
 
           if (options.count) { repos.splice(options.count); }
           render(options.target, repos);
-        }
-      });
+        })
+        .catch(function(error) {
+          console.error('Error:', error);
+          var target = $(options.target);
+          if (target.find('li.loading').length) {
+            target.find('li.loading').addClass('error').text("Error loading feed");
+          } else {
+            target.html('<li class="error">Error loading feed</li>');
+          }
+        });
     }
   };
 })();
